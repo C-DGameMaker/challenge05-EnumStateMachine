@@ -17,10 +17,13 @@ public class GameStateManager : MonoBehaviour
 
     public GameState _currentState { get; private set; }
     public GameState _previousState { get; private set; }
+    [SerializeField] UIManager _uIManager;
     private void Start()
     {
         SetState(GameState.Init);
     }
+
+    
 
     public void SetState(GameState newState)
     {
@@ -54,21 +57,21 @@ public class GameStateManager : MonoBehaviour
 
             case GameState.MainMenu:
                 Debug.Log("Gamestate changed to Main Menu");
-
+                _uIManager.ShowMainMenuUI();
                 //do main menu stuff here
 
                 break;
 
             case GameState.Gameplay:
                 Debug.Log("Gamestate changed to Gameplay");
-
+                _uIManager.ShowGameplayUI();
                 //Do gameplay stuff here
 
                 break;
 
             case GameState.Paused:
                 Debug.Log("Gamestate changed to Paused");
-
+                _uIManager.ShowPausedUI();
                 //do paused stuff here
 
                 break;
