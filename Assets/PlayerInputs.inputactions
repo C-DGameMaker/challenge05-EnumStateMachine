@@ -14,18 +14,20 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                }
-            ],
-            "bindings": []
-        },
-        {
-            "name": "UI",
-            "id": "9f0c6b61-df74-4883-b89c-bcb1da2279a4",
-            "actions": [
+                },
                 {
                     "name": "Pause",
                     "type": "Button",
-                    "id": "72e5565a-0e3a-43d9-99fe-1ec7d655d196",
+                    "id": "ce5de9d0-953d-43b7-87d1-5f5a15b51808",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GameOver",
+                    "type": "Button",
+                    "id": "90b75c62-a59f-4e2d-a5ce-e90bf150c422",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -35,7 +37,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "39c8981b-b83b-41ed-813b-2436d068012b",
+                    "id": "cce54fe4-863a-4ddb-a298-4335789fe3ad",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -46,12 +48,23 @@
                 },
                 {
                     "name": "",
-                    "id": "3070897c-b718-4cdc-8c12-9ae23b87a27e",
+                    "id": "1ba3d20f-72e5-46e5-8c2c-c339bf94bacb",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "853891fa-3096-4dac-86e6-7ed9075e4f0a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GameOver",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

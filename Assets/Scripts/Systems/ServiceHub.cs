@@ -16,6 +16,9 @@ public class ServiceHub : MonoBehaviour
     [SerializeField] GameStateManager gameStateManager;
     [SerializeField] UIManager uiManager;
 
+    public GameStateManager GameState => gameStateManager;
+    public UIManager UIManager => uiManager;
+
 
 
 

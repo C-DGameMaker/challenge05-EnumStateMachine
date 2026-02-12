@@ -7,7 +7,9 @@ public enum GameState
     Init,
     MainMenu,
     Gameplay,
-    Paused
+    Paused,
+    Settings,
+    GameOver
 }
 public class GameStateManager : MonoBehaviour
 {
@@ -57,6 +59,7 @@ public class GameStateManager : MonoBehaviour
 
             case GameState.MainMenu:
                 Debug.Log("Gamestate changed to Main Menu");
+                Time.timeScale = 1f;
                 _uIManager.ShowMainMenuUI();
                 //do main menu stuff here
 
@@ -65,36 +68,87 @@ public class GameStateManager : MonoBehaviour
             case GameState.Gameplay:
                 Debug.Log("Gamestate changed to Gameplay");
                 _uIManager.ShowGameplayUI();
+                Time.timeScale = 1f;
                 //Do gameplay stuff here
 
                 break;
 
             case GameState.Paused:
                 Debug.Log("Gamestate changed to Paused");
+                Time.timeScale = 0f;
                 _uIManager.ShowPausedUI();
+                //do paused stuff here
+
+                break;
+
+            case GameState.Settings:
+                Debug.Log("Gamestate changed to Paused");
+                Time.timeScale = 1f;
+                _uIManager.ShowSettingsUI();
+                //do paused stuff here
+
+                break;
+
+            case GameState.GameOver:
+                Debug.Log("Gamestate changed to Paused");
+                Time.timeScale = 1f;
+                _uIManager.ShowGameOverUI();
                 //do paused stuff here
 
                 break;
 
         }
     }
-    private void Update()
+
+    public void StartGame()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        SetState(newState: GameState.Gameplay);
+    }
+
+    public void Resume()
+    {
+        SetState(newState: _previousState);
+
+        if(_currentState == GameState.Paused)
         {
-            SetState(GameState.Gameplay);
+            _previousState = GameState.Gameplay;
+        }
+    }
+
+    public void MainMenu()
+    {
+        SetState(newState: GameState.MainMenu);
+    }
+
+    public void Settings()
+    {
+        SetState(newState: GameState.Settings);
+    }
+
+    public void GameOver()
+    {
+        if(_currentState == GameState.Gameplay)
+        {
+            if (_currentState == GameState.GameOver) return;
+            SetState(newState: GameState.GameOver);
+        }
+    }
+       
+    
+
+    public void TogglePause()
+    {
+        if (_currentState == GameState.Gameplay)
+        {
+            if (_currentState == GameState.Paused) return;
+                SetState(newState: GameState.Paused);
+        }
+        else if (_currentState == GameState.Paused)
+        {
+            if (_currentState == GameState.Gameplay) return;
+                SetState(newState: GameState.Gameplay);
         }
 
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            if(_currentState != GameState.Paused)
-            {
-                SetState(GameState.Paused);
-            }
-            else
-            {
-                SetState(_previousState);
-            }
-        }
+        
     }
 }
